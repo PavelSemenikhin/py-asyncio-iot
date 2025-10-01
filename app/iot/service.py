@@ -53,6 +53,9 @@ class IOTService:
 
     async def run_program(self, program: list[Message]) -> None:
         print("=====RUNNING PROGRAM======")
+        if not program:
+            raise ValueError("program must not be empty")
+
         if program[0].msg_type == MessageType.SWITCH_ON:
             light_on, speaker_on, play_song = program
             await run_parallel(
